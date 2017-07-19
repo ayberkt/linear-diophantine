@@ -21,4 +21,15 @@ object Main {
       val f = (v : Vector[Int]) => vs2.toList.forall(g(v))
       vs1 filter f
     }
+
+  def bfs : Vector[Int] => Int => Set[Vector[Int]] => Set[Vector[Int]] =
+    v => c => a => {
+      val f : (Vector[Int], Set[Vector[Int]]) => Set[Vector[Int]] =
+        (x, acc) => {
+          val is : Vector[Int] =
+            (x.indices.toVector.filter(k => (prod(v)(x) - c) * v(k) < 0)).toVector
+          is.map((k : Int) => x updated (k, x(k) + 1)).toSet
+        }
+      a.foldRight(Set() : Set[Vector[Int]])(f)
+    }
 }

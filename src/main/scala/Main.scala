@@ -34,4 +34,25 @@ object Main {
         }
       a.foldRight(Set() : Set[Vector[Int]])(f)
     }
+
+  def newMinimalResults :  Vector[Int]
+                        => Int
+                        => Set[Vector[Int]]
+                        => Set[Vector[Int]]
+                        => List[Vector[Int]] =
+    v => c => a => m => {
+      def loop : Set[Vector[Int]] => List[Vector[Int]] => List[Vector[Int]] =
+        m => l => l match {
+          case y :: ys =>
+            if (prod(v)(y) == c && !(m contains y))
+              y::(loop(m + y)(ys))
+            else
+              loop(m)(ys)
+          case List() =>
+            val aP = bfs(v)(c)(a)
+            val aPP : Set[Vector[Int]] = unnecessaryBranches(aP)(m)
+            newMinimalResults(v)(c)(aPP)(m)
+        }
+      loop(m)(a.toList)
+    }
 }

@@ -1,7 +1,7 @@
 object Main {
   def main(args : Array[String]) : Unit = println("Hello world!")
 
-  def vector = (x : Int) => (elems : List[Int]) => (elems take x).toArray
+  def vector = (x : Int) => (elems : List[Int]) => (elems take x).toVector
 
   def basis =
     (n : Int) =>

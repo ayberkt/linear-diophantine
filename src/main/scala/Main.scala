@@ -55,4 +55,14 @@ object Main {
         }
       loop(m)(a.toList)
     }
+
+    def solve : List[Int] => Int => List[List[Int]] =
+      v => c => {
+        val arg1 : Vector[Int] = vector(v.length)(v.toList)
+        val arg2 : Int = c
+        val arg3 : Set[Vector[Int]] = basis(v.length)
+        val arg4 : Set[Vector[Int]] = Set()
+
+        newMinimalResults(arg1)(arg2)(arg3)(arg4).map(xs => xs.toList).toList
+      }
 }

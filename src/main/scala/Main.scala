@@ -12,4 +12,13 @@ object Main {
 
   def lessEq : Vector[Int] => Vector[Int] => Boolean =
     v1 => v2 => v1.indices.forall((i : Int) => v1(i) <= v2(i))
+
+  def unnecessaryBranches :  Set[Vector[Int]]
+                          => Set[Vector[Int]]
+                          => Set[Vector[Int]] =
+    vs1 => vs2 => {
+      val g = (v1 : Vector[Int]) => (v2 : Vector[Int]) => !lessEq(v2)(v1)
+      val f = (v : Vector[Int]) => vs2.toList.forall(g(v))
+      vs1 filter f
+    }
 }

@@ -57,6 +57,9 @@ object Main {
       }
     }
 
+    def check (cfs : List[Int])(c : Int)(sol : List[Int]) : Boolean =
+      ((cfs.zip(sol) map { case (x, y) => x * y }).sum) == c
+
     def solve : List[Int] => Int => List[List[Int]] =
       v => c => {
         val arg1 : Vector[Int] = vector(v.length)(v.toList)
@@ -64,6 +67,12 @@ object Main {
         val arg3 : Set[Vector[Int]] = basis(v.length)
         val arg4 : Set[Vector[Int]] = Set()
 
-        newMinimalResults(arg1)(arg2)(arg3)(arg4).map(xs => xs.toList).toList
+        val solutions =
+          newMinimalResults(arg1)(arg2)(arg3)(arg4).map(xs => xs.toList).toList
+        if (solutions.forall(check(v)(c)))
+          println("All solutions correct.")
+        else
+          println("Some problems found.")
+        solutions
       }
 }

@@ -21,6 +21,8 @@ object Main {
       vs1 filter f
     }
 
+  def setInsert(s : Set[Vector[Int]], x : Vector[Int]) = s.union(Set(x))
+
   def bfs : Vector[Int] => Int => Set[Vector[Int]] => Set[Vector[Int]] =
     v => c => a => {
       val f : (Vector[Int], Set[Vector[Int]]) => Set[Vector[Int]] =

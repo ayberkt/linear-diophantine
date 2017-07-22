@@ -72,12 +72,6 @@ object solveLinDiaph extends ((List[Int], Int) => List[List[Int]]) {
       val arg3 : Set[Vector[Int]] = basis(v.length)
       val arg4 : Set[Vector[Int]] = Set()
 
-      val solutions =
-        newMinimalResults(arg1)(arg2)(arg3)(arg4).map(xs => xs.toList).toList
-      if (solutions.forall(check(v)(c)))
-        println("All solutions correct.")
-      else
-        println("Some problems found.")
-      solutions
+      newMinimalResults(arg1)(arg2)(arg3)(arg4).map(xs => xs.toList).toList
     }
 }
